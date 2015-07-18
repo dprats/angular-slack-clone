@@ -22,13 +22,15 @@ angular
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'auth/login.html'
+        templateUrl: 'auth/login.html',
+        controller: 'AuthCtrl'
       })
       .state('register', {
         url: '/register',
-        templateUrl: 'auth/register.html'
+        templateUrl: 'auth/register.html',
+        controller: 'AuthCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
   })
-  .constant('FirebaseUrl', 'https://slack.firebaseio.com/');
+  .constant('FirebaseUrl', 'https://luminous-fire-5758.firebaseio.com'); //link to my firebase

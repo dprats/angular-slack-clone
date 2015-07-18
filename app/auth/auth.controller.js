@@ -1,5 +1,5 @@
 
-angularfireSlackApp.controller('AuthCtrl',['Auth', '$state', function(Auth, $state){
+angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', function(Auth, $state){
   //"$state is provided by ui-router to control the state of our application
   //we can use the go() function to redirect our application to a specific state. 
 
@@ -17,6 +17,7 @@ angularfireSlackApp.controller('AuthCtrl',['Auth', '$state', function(Auth, $sta
 
   authCtrl.login = function(){
     Auth.$authWithPassword(authCtrl.user).then(function(auth){
+      console.log("successful login!");
       $state.go('home'); 
     }, function(error){
       authCtrl.error = error;
@@ -25,6 +26,7 @@ angularfireSlackApp.controller('AuthCtrl',['Auth', '$state', function(Auth, $sta
 
   authCtrl.register = function(){
     Auth.$createUser(authCtrl.user).then(function(success){
+    console.log("successful register!");
      authCtrl.login();
     }, function(error){
       AuthCtrl.error = error;

@@ -48,7 +48,9 @@ angular
           }
       })
       .state('profile', {
-          url: 'profile',
+          url: '/profile',
+          templateUrl: 'users/profile.html',
+          controller: 'ProfileCtrl as profileCtrl',
           resolve: {
             auth: function($state, Users, Auth){
               return Auth.$requireAuth().catch(function(){

@@ -4,8 +4,19 @@
 		Edit Profile
 	</div>
 	
-	<form ng-submit="profileCtrl.profile.displayName">
+	<form ng-submit="profileCtrl.updateProfile()">
 		
+		<p ng-hide="profileCtrl.profile.displayName">
+			You will need a display name before you can start chatting
+		</p>
+
+
+		<div class="input-group">
+			<input required type="text" class="form-control" ng-model="profileCtrl.profile.displayName" placeholder="Display Name"/>
+			<input type="submit" class="btn btn-default" value="Set Display Name"/>
+			
+		</div>
+
 	</form>
 
 </div>

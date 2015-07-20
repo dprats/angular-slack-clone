@@ -1,10 +1,13 @@
 
 angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', function(Auth, $state){
+
   //"$state is provided by ui-router to control the state of our application
   //we can use the go() function to redirect our application to a specific state. 
 
   //we use "this" because we are going to use the "Controller As" syntax
   var authCtrl = this;
+
+  authCtrl.message ="Message Passed from Controller";
 
   //this object will be used with the ng-model directive on our form
   authCtrl.user = {
@@ -17,20 +20,22 @@ angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', f
 
   authCtrl.login = function(){
     Auth.$authWithPassword(authCtrl.user).then(function(auth){
-      console.log("successful login!");
+      console.log("successful login! for user: " + auth.password.email);
       $state.go('home'); 
+      console.log('you should be looking at the home page now');
     }, function(error){
       authCtrl.error = error;
     });
   };
 
   authCtrl.register = function(){
+    console.log("trying to register...");
     Auth.$createUser(authCtrl.user).then(function(success){
-    console.log("successful register!");
+     console.log("successful register!");
      authCtrl.login();
     }, function(error){
       AuthCtrl.error = error;
-    })
+    });
   };
 
 

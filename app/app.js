@@ -81,7 +81,7 @@ angular
             });
           }
         }
-      })
+      });
       .state('channels', {
         url: '/channels',
         controller: 'ChannelsCtrl',

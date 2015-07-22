@@ -19,12 +19,11 @@ angular
       .state('home', {
         url: '/',
         templateUrl: 'home/home.html'
-        }
       })
       .state('login', {
         url: '/login',
         templateUrl: 'auth/login.html',
-        controller: 'AuthCtrl',
+        controller: 'AuthCtrl as authCtrl',
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireAuth().then(function(auth){
@@ -33,11 +32,12 @@ angular
               return;
             });
           }
+        }
       })
       .state('register', {
         url: '/register',
         templateUrl: 'auth/register.html',
-        controller: 'AuthCtrl',
+        controller: 'AuthCtrl as authCtrl',
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireAuth().then(function(auth){
@@ -46,6 +46,7 @@ angular
               return;
             });
           }
+        }
       })
       .state('profile', {
           url: '/profile',
@@ -56,10 +57,10 @@ angular
               return Auth.$requireAuth().catch(function(){
                 $state.go('home');
               });
-        },
-          profile: function(Users, Auth){
-            return Auth.$requireAuth().then(function(auth){
-              return Users.getProfile(auth.id).$loaded;
+          },
+            profile: function(Users, Auth){
+              return Auth.$requireAuth().then(function(auth){
+                return Users.getProfile(auth.id).$loaded;
             });
           }
         }

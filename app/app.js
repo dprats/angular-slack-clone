@@ -142,46 +142,6 @@ angular
         controller: 'ChannelsCtrl as channelsCtrl'
 
       });
-      .state('channels', {
-        url: '/channels',
-        controller: 'ChannelsCtrl',
-        templateUrl: 'channels/index.html',
-        resolve: {
-          //two dependencies:
-
-          //"channels" promises our $firebaseArray of channels
-          channels: function(Channels){
-              //$loaded is a function provided by $firebaseArray and $firebaseObject
-              //that returns a promise that gets resolved when the data from firebase is 
-              //available locally
-            return Channels.$loaded();
-          },
-          //"profile" is like "profile(dependency)" in "profile(state)" but we are
-          //ensuring the user already has a displayName set, otherwise they are taken to
-          //the "profile(state)" and if they are not authenticated they are sent to the
-          //"home(state)"
-          profile: function($state, Auth, Users){
-            return Auth.$requireAuth().then(function(auth){
-              return Users.getProfile(auth.uid).$loaded().then(function(profile){
-
-                if (profile.displayName){
-                  return profile;
-                } else {
-                  $state.go('profile');
-                }
-              });
-            }, function(error){
-              $state.go('home');
-            });
-          }
-        } 
-      })
-      //child state of the channels controller
-      .state('channels.create', {
-        url: '/create',
-        templateUrl: 'channels/create.html',
-        controller: 'ChannelsCtrl as channelsCtrl'
-      });
 
     $urlRouterProvider.otherwise('/');
   })

@@ -34,11 +34,13 @@ angular.module('angularfireSlackApp')
 		channelsCtrl.createChannel = function(name){
 
 			//the $add() function on $firebaseArray has similar functionality as .push() on an array
-			channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(){
-
+			channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(ref){
 				channelsCtrl.newChannel = {
 					name: ''
 				};
+				//channelId is usually taken from the params, but we are now passing it as
+				//the id returned by ref.key()
+				$state.go('channels.messages({ channelId: ref.key() })');
 			});
 
 		}

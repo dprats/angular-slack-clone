@@ -11,7 +11,9 @@
 			<!-- Create the channels listing using the following markup in the channel-list -->
 			
 			<div ng-repeat="channel in channelCtrl.channels">
-				<a># {{ channel.name }} </a>
+				<!-- channels.messages below refers to the state -->
+				<a ui-sref="channels.messages({channelId: channel.$id  })" ui-sref-active="selected"># {{ channel.name }} </a>
+
 			</div>
 
 			<!-- Create a link to the channels.create state below the channel listing: -->

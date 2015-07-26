@@ -158,6 +158,8 @@ angular
       }).
       state('channels.messages',{ //child state of channels
         url: '/{channelId}/messages', //URL has the channelId parameter
+        controller: 'MessagesCtrl as messagesCtrl',
+        templateUrl: 'channels/messages.html',
         resolve: {
           messages: function($stateParams, Messages){ //we acccess the param via $stateParams provided by ui-router
             return Messages.forChannel($stateParams.channelId).$loaded();

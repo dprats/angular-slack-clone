@@ -1,5 +1,5 @@
 angular.module('angularfireSlackApp').
-	controller('ProfileCtrl', ['$state', 'md5', 'Auth', 'profile', function($state, md5, Auth, profile){
+	controller('ProfileCtrl', ['$state', 'md5', 'auth', 'profile', function($state, md5, auth, profile){
 
 		
 		var profileCtrl = this;

@@ -27,7 +27,9 @@ angular
           requireNoAuth: function($state , Auth){
             //$requireAuth() is a helper function which returns a promise with the 
             //current authentication state if the user is authenticated. Otherwise rejects the promise.
+            console.log('attempting to resolve the requireNoAuth promise on home state...');
             return Auth.$requireAuth().then(function(auth){
+              console.log('requireNoAuth promise on home.resolve was resolved. Heading to CHANNELS');
               $state.go('channels');
             }, function(error){
               return
@@ -82,13 +84,18 @@ angular
           controller: 'ProfileCtrl as profileCtrl',
           resolve: {
             auth: function($state, Users, Auth){
+              console.log('PROFILE: checking if the user is authenticated...');
               return Auth.$requireAuth().catch(function(){
+                console.log('user is NOT authenticated so we are going HOME');
                 $state.go('home');
               });
             },
             profile: function(Users, Auth){
+              console.log('getting the users profile...');
               return Auth.$requireAuth().then(function(auth){
-                return Users.getProfile(auth.id).$loaded;
+                //$loaded() is a function from $firebaseArray that returns a promise resolved 
+                //when data is available locally
+                return Users.getProfile(auth.uid).$loaded();
             });
           }
         }
@@ -115,21 +122,28 @@ angular
             //Auth.requireAuth() returns a promise fulfilled with the current authentication state 
             //if the user is authenticated but otherwise rejects the promise. 
             return Auth.$requireAuth().then(function(auth){
+              console.log('attempting to resolve channels.profile promise...');
               // if the user is already authenticated, get the user's profile from the auth.id
               //( note: $loaded() is a method from $firebaseArray which returns a promise which is resolved 
               //  when the data from Firebase is available locally)
+
               return Users.getProfile(auth.uid).$loaded().then(function(profile){
+                console.log('channels.profile promise was able to resolve the getProfile...');
                 //if the profile returned has a display name, return it.
+                console.log('profile: ');
+                console.log(profile);
                 if (profile.displayName){
                   return profile;
                 //... otherwise go back to HOME state
                 } else {
-                  $state.go('home');
+                  console.log('user has no displayName so heading to PROFILE');
+                  
+                  $state.go('profile');
                 }
               });
             }, function(error){
               //if one cannot is not authenticated... change state to 'home'
-              console.log('User is not Authenticated so we cannot get her profile');
+              console.log('User is not Authenticated so we cannot get her profile. Heading to HOME');
               $state.go('home');
 
             });

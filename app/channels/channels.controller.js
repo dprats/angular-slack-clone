@@ -12,7 +12,7 @@ angular.module('angularfireSlackApp')
 
 		// Set getDisplayName and getGravatar to the respective functions on the Users service.
 		channelsCtrl.getDisplayName = Users.getDisplayName;
-		channelsCtrl.getGravatar = User.getGravatar;
+		channelsCtrl.getGravatar = Users.getGravatar;
 
 		// Create a logout function that will allow our users to log out, 
 		//returning them to the home state.

@@ -6,19 +6,27 @@
 		<div class="slack-name">
 			<h2>FireSlack</h2>
 		</div>
+
 		<div class="channel-list">
 			<div class="list-head">Channels</div>
 			<!-- Create the channels listing using the following markup in the channel-list -->
 			
-			<div ng-repeat="channel in channelCtrl.channels">
+			<div ng-repeat="channel in channelsCtrl.channels">
 				<!-- channels.messages below refers to the state -->
 				<a ui-sref="channels.messages({channelId: channel.$id  })" ui-sref-active="selected"># {{ channel.name }} </a>
 
 			</div>
 
+			
+
 			<!-- Create a link to the channels.create state below the channel listing: -->
 			<div class="channel create">
 				<a ui-sref="channels.create">+ create channel </a>
+			</div>
+
+			<div class="list-head">Direct Messages</div>
+			<div class="channel" ng-repeat="user in channelCtrl.users">
+				<a ng-if="user.$id !== channelsCtrl.profile.$id" ui-sref="channels.direct( { uid: user.$uid } )" ui-sref="selected"># {{ user.displayName }} </a>
 			</div>
 
 		</div>

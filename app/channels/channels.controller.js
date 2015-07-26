@@ -10,9 +10,12 @@ angular.module('angularfireSlackApp')
 		var channels = channelsCtrl.channels;
 		var profile = channelsCtrl.profile;
 
+
 		// Set getDisplayName and getGravatar to the respective functions on the Users service.
 		channelsCtrl.getDisplayName = Users.getDisplayName;
 		channelsCtrl.getGravatar = Users.getGravatar;
+		//Set users on channelsCtrl to Users.all
+		channelsCtrl.users = Users.all;
 
 		// Create a logout function that will allow our users to log out, 
 		//returning them to the home state.
@@ -40,7 +43,7 @@ angular.module('angularfireSlackApp')
 				};
 				//channelId is usually taken from the params, but we are now passing it as
 				//the id returned by ref.key()
-				$state.go('channels.messages({ channelId: ref.key() })');
+				$state.go('channels.messages', { channelId: ref.key() } );
 			});
 
 		}

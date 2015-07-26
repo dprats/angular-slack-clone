@@ -35,13 +35,9 @@ angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', f
   authCtrl.register = function(){
     console.log("trying to register...");
     Auth.$createUser(authCtrl.user).then(function(success){
-<<<<<<< HEAD
-     console.log("successful register!");
-     authCtrl.login();
-=======
+
       console.log("successful register!");
       authCtrl.login();
->>>>>>> channels_branch
     }, function(error){
       AuthCtrl.error = error;
     });

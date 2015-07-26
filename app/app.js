@@ -19,15 +19,7 @@ angular
       .state('home', {
         url: '/',
         templateUrl: 'home/home.html',
-<<<<<<< HEAD
-        resolve: {
-          requireNoAuth: function($state, Auth){
-            return Auth.$requireAuth().then(function(auth){
-              console.log('promise on state:Home succesfully resolved');
-              $state.go('home');
-            }, function(error){
-              return;
-=======
+
         //resolve is a property you can attach to a route. Resolve contains one or more promises
         //that must resolve successfully before the route will change. You can wait for data to become
         //available before showing a view, and sinplify the initialization of the controller.
@@ -39,7 +31,7 @@ angular
               $state.go('channels');
             }, function(error){
               return
->>>>>>> channels_branch
+
             });
           }
         }
@@ -48,10 +40,9 @@ angular
         url: '/login',
         controller: 'AuthCtrl as authCtrl',
         templateUrl: 'auth/login.html',
-<<<<<<< HEAD
-=======
+
         controller: 'AuthCtrl as authCtrl',
->>>>>>> channels_branch
+
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireAuth().then(function(auth){
@@ -68,10 +59,9 @@ angular
         url: '/register',
         controller: 'AuthCtrl as authCtrl',
         templateUrl: 'auth/register.html',
-<<<<<<< HEAD
-=======
+
         controller: 'AuthCtrl as authCtrl',
->>>>>>> channels_branch
+
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireAuth().then(function(auth){
@@ -125,11 +115,6 @@ angular
             //Auth.requireAuth() returns a promise fulfilled with the current authentication state 
             //if the user is authenticated but otherwise rejects the promise. 
             return Auth.$requireAuth().then(function(auth){
-<<<<<<< HEAD
-          
-              return Users.getProfile(auth.id).$loaded();
-=======
-
               // if the user is already authenticated, get the user's profile from the auth.id
               //( note: $loaded() is a method from $firebaseArray which returns a promise which is resolved 
               //  when the data from Firebase is available locally)
@@ -146,7 +131,7 @@ angular
               //if one cannot is not authenticated... change state to 'home'
               console.log('User is not Authenticated so we cannot get her profile');
               $state.go('home');
->>>>>>> channels_branch
+
             });
           }
         }

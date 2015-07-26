@@ -22,17 +22,9 @@ angular.module('angularfireSlackApp')
 				return users.$getRecord(uid).displayName;
 			},
 			all: users,
-<<<<<<< HEAD
 			gravatar: function(uid){
 				return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
 			}
-			
-=======
-			
-			gravatar: function(uid){
-				return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
-			}
->>>>>>> channels_branch
 		};
 		return Users;
 

@@ -1,0 +1,15 @@
+<div class="header">
+	<h1> {{ messagesCtrl.channelName }}</h1>
+</div>
+
+<div class="message-wrap" ng-repeat="message in messagesCtrl.messages">
+	<img class="user-pic" ng-src="{{ channelsCtrl.getGravatar(message.uid) }}">
+	<div class="message-info">
+		
+	</div>
+
+</div>
+
+<form class="message-form">
+	
+</form>

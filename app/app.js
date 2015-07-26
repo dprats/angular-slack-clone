@@ -94,7 +94,7 @@ angular
               console.log('getting the users profile...');
               return Auth.$requireAuth().then(function(auth){
                 //$loaded() is a function from $firebaseArray that returns a promise resolved 
-                //when data is available locally
+                //  when data is available locally
                 return Users.getProfile(auth.uid).$loaded();
             });
           }
@@ -155,6 +155,17 @@ angular
         templateUrl: 'channels/create.html',
         controller: 'ChannelsCtrl as channelsCtrl'
 
+      }).
+      state('channels.messages',{ //child state of channels
+        url: '/{channelId}/messages', //URL has the channelId parameter
+        resolve: {
+          messages: function($stateParams, Messages){ //we acccess the param via $stateParams provided by ui-router
+            return Messages.forChannel($stateParams.channelId).$loaded();
+          },
+          channelName: function($stateParams, channels){ //channels dependency injected from the channels parent state
+            return '#'+channels.$getRecord($stateParams.channelId).name;
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');

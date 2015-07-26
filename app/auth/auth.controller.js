@@ -6,6 +6,7 @@ angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', f
 
   //we use "this" because we are going to use the "Controller As" syntax
   var authCtrl = this;
+  console.log('Hello from auth.controller.js');
 
   authCtrl.message ="Message Passed from Controller";
 
@@ -19,11 +20,14 @@ angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', f
   //both of these functions take a user object and return a promise.
 
   authCtrl.login = function(){
+    console.log('trying to log in...');
+
     Auth.$authWithPassword(authCtrl.user).then(function(auth){
       console.log("successful login! for user: " + auth.password.email);
       $state.go('home'); 
       console.log('you should be looking at the home page now');
     }, function(error){
+      console.log('Error logging in');
       authCtrl.error = error;
     });
   };
@@ -31,8 +35,13 @@ angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', f
   authCtrl.register = function(){
     console.log("trying to register...");
     Auth.$createUser(authCtrl.user).then(function(success){
+<<<<<<< HEAD
      console.log("successful register!");
      authCtrl.login();
+=======
+      console.log("successful register!");
+      authCtrl.login();
+>>>>>>> channels_branch
     }, function(error){
       AuthCtrl.error = error;
     });

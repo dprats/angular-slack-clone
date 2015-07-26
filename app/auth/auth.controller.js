@@ -16,11 +16,6 @@ angular.module('angularfireSlackApp').controller('AuthCtrl',['Auth', '$state', f
   //$firebaseAuth provides two functions we can use: $authWithPassword and $createUser for registering
   //both of these functions take a user object and return a promise.
 
-  authCtrl.login2 = function(){
-
-    console.log('hello from authCtrl.login2.')
-  };
-
   authCtrl.login = function(){
     console.log('trying to log in...');
 

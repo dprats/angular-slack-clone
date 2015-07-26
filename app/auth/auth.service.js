@@ -1,4 +1,4 @@
-//created a factory for authenticating
+	//created a factory for authenticating
 angular.module('angularfireSlackApp')
 	.factory('Auth', function($firebaseAuth,FirebaseUrl){ //$firebaseAuth came from firbase module
 

@@ -1,8 +1,11 @@
 angular.module('angularfireSlackApp').
 	controller('ProfileCtrl', ['$state', 'md5', 'Auth', 'profile', function($state, md5, Auth, profile){
+		
 		var profileCtrl = this;
+		
 		//set profile in the controller to the one that was resolved by the router
 		profileCtrl.profile = profile;
+		
 		//update profile in the controller
 		profileCtrl.updateProfile = function(){
 			//getting the current user's email from the auth data that was resolved
